@@ -18,43 +18,67 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="w-64 bg-indigo-700 text-white min-h-screen p-4">
-      <div className="mb-8">
-        <h2 className="text-2xl font-bold">Hi, Admin</h2>
+    <div className="w-64 bg-gradient-to-b from-teal-700 to-teal-500 text-gray-100 min-h-screen shadow-lg flex flex-col justify-between">
+      {/* Header */}
+      <div className="p-6">
+        <h2 className="text-3xl font-semibold mb-4 text-gray-50">Admin Panel</h2>
+        <p className="text-sm text-teal-200">Manage your tasks and users efficiently</p>
       </div>
-      
-      <nav>
-        <Link to="/admin/create-user" className="flex items-center p-3 mb-2 hover:bg-indigo-600 rounded-lg">
-          <UserGroupIcon className="h-6 w-6 mr-2" />
-          Create User
-        </Link>
-        
-        <Link to="/admin/create-task" className="flex items-center p-3 mb-2 hover:bg-indigo-600 rounded-lg">
-          <ClipboardListIcon className="h-6 w-6 mr-2" />
-          Create Tasks
-        </Link>
-        
-        <Link to="/admin/show-tasks" className="flex items-center p-3 mb-2 hover:bg-indigo-600 rounded-lg">
-          <ViewListIcon className="h-6 w-6 mr-2" />
-          Show Tasks
-        </Link>
-        
-        <Link to="/admin/show-users" className="flex items-center p-3 mb-2 hover:bg-indigo-600 rounded-lg">
-          <UsersIcon className="h-6 w-6 mr-2" />
-          Show Users
-        </Link>
-        
-        <button 
-          onClick={handleLogout}
-          className="flex items-center p-3 mb-2 hover:bg-indigo-600 rounded-lg w-full"
-        >
-          <LogoutIcon className="h-6 w-6 mr-2" />
-          Logout
-        </button>
+
+      {/* Navigation */}
+      <nav className="flex-grow">
+        <ul>
+          <li>
+            <Link 
+              to="/admin/create-user" 
+              className="flex items-center p-4 mb-2 hover:bg-teal-600 rounded-lg transition-all duration-300 group"
+            >
+              <UserGroupIcon className="h-6 w-6 mr-3 group-hover:text-yellow-400" />
+              <span>Create User</span>
+            </Link>
+          </li>
+          <li>
+            <Link 
+              to="/admin/create-task" 
+              className="flex items-center p-4 mb-2 hover:bg-teal-600 rounded-lg transition-all duration-300 group"
+            >
+              <ClipboardListIcon className="h-6 w-6 mr-3 group-hover:text-yellow-400" />
+              <span>Create Tasks</span>
+            </Link>
+          </li>
+          <li>
+            <Link 
+              to="/admin/show-tasks" 
+              className="flex items-center p-4 mb-2 hover:bg-teal-600 rounded-lg transition-all duration-300 group"
+            >
+              <ViewListIcon className="h-6 w-6 mr-3 group-hover:text-yellow-400" />
+              <span>Show Tasks</span>
+            </Link>
+          </li>
+          <li>
+            <Link 
+              to="/admin/show-users" 
+              className="flex items-center p-4 mb-2 hover:bg-teal-600 rounded-lg transition-all duration-300 group"
+            >
+              <UsersIcon className="h-6 w-6 mr-3 group-hover:text-yellow-400" />
+              <span>Show Users</span>
+            </Link>
+          </li>
+        </ul>
       </nav>
+
+      {/* Footer */}
+      <div className="p-6 border-t border-teal-400">
+        <button 
+          onClick={handleLogout} 
+          className="flex items-center w-full p-4 bg-teal-600 hover:bg-red-500 rounded-lg transition-all duration-300 group"
+        >
+          <LogoutIcon className="h-6 w-6 mr-3 group-hover:text-white" />
+          <span>Logout</span>
+        </button>
+      </div>
     </div>
   );
 };
 
 export default Sidebar;
-
