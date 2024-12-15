@@ -107,14 +107,25 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-// Get tasks for specific user (User route)
+// Get tasks for specific user with pagination
 router.get("/user/:userId", auth, async (req, res) => {
   try {
-    console.log('Fetching tasks for user:', req.params.userId); // Debug log
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 5;
+    const skip = (page - 1) * limit;
+
+    const total = await Task.countDocuments({ assignedUser: req.params.userId });
     const tasks = await Task.find({ assignedUser: req.params.userId })
-      .sort({ dueDate: 1 });
-    console.log('Found user tasks:', tasks); // Debug log
-    res.json(tasks);
+      .sort({ dueDate: 1 })
+      .skip(skip)
+      .limit(limit);
+
+    res.json({
+      tasks,
+      total,
+      currentPage: page,
+      totalPages: Math.ceil(total / limit)
+    });
   } catch (err) {
     console.error('Error fetching user tasks:', err);
     res.status(500).json({ message: "Error fetching tasks", error: err.message });
