@@ -31,7 +31,7 @@ const AdminLogin = () => {
       localStorage.setItem("userId", response.data.user._id);
       localStorage.setItem("username", response.data.user.username);
       
-      navigate("/admin/dashboard");
+      navigate("/admin/show-tasks");
     } catch (err) {
       setError(err.response?.data?.message || "Login failed");
     } finally {
